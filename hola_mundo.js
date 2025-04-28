@@ -1,1 +1,0 @@
-consolo.log("Hola mundo");
