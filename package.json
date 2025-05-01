@@ -1,6 +1,14 @@
 {
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1",
+    "nodemon": "^3.1.10"
+  },
   "name": "entregable",
   "version": "1.0.0",
+  "description": "HOLA MUNDO",
   "main": "app.js",
   "directories": {
     "test": "test"
@@ -19,14 +27,5 @@
   "bugs": {
     "url": "https://github.com/Juan1Fabian/Entregable/issues"
   },
-  "homepage": "https://github.com/Juan1Fabian/Entregable#readme",
-  "description": "",
-
-  "dependencies": {
-    "body-parser": "^2.2.0",
-    "ejs": "^3.1.10",
-    "express": "^5.1.0",
-    "mysql2": "^3.14.1",
-    "nodemon": "^3.1.10"
-  }
+  "homepage": "https://github.com/Juan1Fabian/Entregable#readme"
 }
