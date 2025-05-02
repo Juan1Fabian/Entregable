@@ -1,11 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hola</h1>
+<%- include('partials/headers') %>
+
+<!-- Cuerpo con fondo oscuro -->
+<body class="bg-dark text-white">
+
+  <div class="container my-4">
+    <h2 class="text-center mb-4">Productos de Entrenimiento</h2>
+
+    <!-- Formulario de búsqueda -->
+    <form class="row g-3 mb-4 d-flex align-items-center" method="GET" action="/">
+      <div class="col-md-3">
+        <input type="text" class="form-control bg-dark text-white border-secondary" name="nombre" placeholder="Buscar por nombre" value="<%= query.nombre || '' %>">
+      </div>
+      <div class="col-md-3">
+        <select class="form-select bg-dark text-white border-secondary" name="marca">
+          <option value="">Todas las marcas</option>
+          <% marcas.forEach(m => { %>
+            <option value="<%= m.idmarca %>" <%= query.marca == m.idmarca ? 'selected' : '' %>><%= m.marca %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select class="form-select bg-dark text-white border-secondary" name="catalogo">
+          <option value="">Todos los catálogos</option>
+          <% catalogos.forEach(c => { %>
+            <option value="<%= c.idcatalogo %>" <%= query.catalogo == c.idcatalogo ? 'selected' : '' %>><%= c.catalogo %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="col-md-3 text-center">
+        <button type="submit" class="btn btn-primary btn-sm w-100">Buscar</button>
+      </div>
+    </form>
+
+    <!-- Productos -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% productos.forEach(p => { %>
+        <div class="col">
+          <div class="card h-100 shadow-sm bg-dark text-white">
+            <img src="/imagen/<%= p.idproducto %>" class="card-img-top" alt="<%= p.producto %>" style="height: 400px; object-fit: cover;">
+            <div class="card-body">
+              <h5 class="card-title"><%= p.producto %></h5>
+              <p class="card-text"><strong>Precio:</strong> S/. <%= p.precio %></p>
+              <p class="card-text"><strong>Marca:</strong> <%= p.marca %></p>
+              <p class="card-text"><strong>Stock:</strong> <%= p.stock %></p>
+              <p class="card-text"><%= p.descripcion %></p>
+              <div class="card-footer d-flex justify-content-end gap-2">
+                <a href="/edit/<%= p.idproducto %>" class="btn btn-warning btn-sm">Editar</a>
+                <a href="/delete/<%= p.idproducto %>" class="btn btn-sm btn-danger delete">Eliminar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const enlacesEliminar = document.querySelectorAll(".delete");
+  
+      enlacesEliminar.forEach((enlace) => {
+        enlace.addEventListener("click", (event) => {
+          event.preventDefault();
+  
+          Swal.fire({
+            title: "Producto",
+            text: "¿Está seguro de eliminar?",
+            icon: "question",
+            background: "#2c3e50",         // Fondo oscuro
+            color: "#ecf0f1",              // Texto claro
+            footer: "<span style='color:#bdc3c7'>Product Web</span>",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#27ae60",
+            showCancelButton: true,
+            cancelButtonText: "Cancelar",
+            cancelButtonColor: "#c0392b",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = event.currentTarget.getAttribute("href");
+            }
+          });
+        });
+      });
+    });
+  </script>
+  
+
+  <%- include('partials/footer') %>
+
 </body>
-</html>
