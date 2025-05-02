@@ -49,7 +49,10 @@
               </div>
               <div class="card-footer d-flex justify-content-center gap-2">
                 <a href="/edit/<%= p.idproducto %>" class="btn btn-warning">Editar</a>
-                <a href="/delete/<%= p.idproducto %>" class="btn btn-danger delete">Eliminar</a>
+                <form action="/delete/<%= p.idproducto %>" method="POST" class="d-inline delete-form">
+                  <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+                
               </div>
             </div>
           </div>
@@ -59,10 +62,10 @@
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const enlacesEliminar = document.querySelectorAll(".delete");
+      const forms = document.querySelectorAll(".delete-form");
   
-      enlacesEliminar.forEach((enlace) => {
-        enlace.addEventListener("click", (event) => {
+      forms.forEach((form) => {
+        form.addEventListener("submit", (event) => {
           event.preventDefault();
   
           Swal.fire({
@@ -79,13 +82,14 @@
             cancelButtonColor: "#c0392b",
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = event.currentTarget.getAttribute("href");
+              form.submit();  // Envía el formulario si el usuario confirma
             }
           });
         });
       });
     });
   </script>
+  
   
 
   <%- include('partials/footer') %>
