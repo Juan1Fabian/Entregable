@@ -45,12 +45,8 @@ Esta aplicación web permite **registrar, listar, buscar, editar y eliminar prod
 /Entregable
   /config/Database.js -> Conexión a base de datos
 
-<<<<<<< HEAD
+
 app.js         -> Archivo principal de arranque del servidor
-=======
-server.js         -> Archivo principal de arranque del servidor
->>>>>>> 54d39739be8cf405ebef6ded7dfc50d893f723e0
-```
 
 ---
 
