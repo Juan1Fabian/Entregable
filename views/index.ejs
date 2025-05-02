@@ -4,12 +4,12 @@
 <body class="bg-dark text-white">
 
   <div class="container my-4">
-    <h2 class="text-center mb-4">Productos de Entrenimiento</h2>
+    <h2 class="text-center mb-4">Encuentra tu producto</h2>
 
     <!-- Formulario de búsqueda -->
     <form class="row g-3 mb-4 d-flex align-items-center" method="GET" action="/">
       <div class="col-md-3">
-        <input type="text" class="form-control bg-dark text-white border-secondary" name="nombre" placeholder="Buscar por nombre" value="<%= query.nombre || '' %>">
+        <input type="text" class="form-control bg-dark text-white border-secondary" name="nombre" placeholder="Buscar por nombre" value="<%= query.nombre || '' %>"  autocomplete="off">
       </div>
       <div class="col-md-3">
         <select class="form-select bg-dark text-white border-secondary" name="marca">
@@ -28,7 +28,7 @@
         </select>
       </div>
       <div class="col-md-3 text-center">
-        <button type="submit" class="btn btn-primary btn-sm w-100">Buscar</button>
+        <button type="submit" class="btn btn-primary w-100">Buscar</button>
       </div>
     </form>
 
@@ -39,14 +39,17 @@
           <div class="card h-100 shadow-sm bg-dark text-white">
             <img src="/imagen/<%= p.idproducto %>" class="card-img-top" alt="<%= p.producto %>" style="height: 400px; object-fit: cover;">
             <div class="card-body">
-              <h5 class="card-title"><%= p.producto %></h5>
-              <p class="card-text"><strong>Precio:</strong> S/. <%= p.precio %></p>
-              <p class="card-text"><strong>Marca:</strong> <%= p.marca %></p>
-              <p class="card-text"><strong>Stock:</strong> <%= p.stock %></p>
-              <p class="card-text"><%= p.descripcion %></p>
-              <div class="card-footer d-flex justify-content-end gap-2">
-                <a href="/edit/<%= p.idproducto %>" class="btn btn-warning btn-sm">Editar</a>
-                <a href="/delete/<%= p.idproducto %>" class="btn btn-sm btn-danger delete">Eliminar</a>
+              <h5 class="card-title text-center"><%= p.producto %></h5>
+              <p class="card-text text-success text-center"><strong>S/. <%= p.precio %></strong></p>
+              <p class="card-text text-center"><%= p.descripcion %></p>
+              <div class="text-end">
+                <p class="bg-secondary text-white rounded px-1 py-1 d-inline-block">
+                  <strong>Stock:</strong> <%= p.stock %>
+                </p>
+              </div>
+              <div class="card-footer d-flex justify-content-center gap-2">
+                <a href="/edit/<%= p.idproducto %>" class="btn btn-warning">Editar</a>
+                <a href="/delete/<%= p.idproducto %>" class="btn btn-danger delete">Eliminar</a>
               </div>
             </div>
           </div>
@@ -66,8 +69,8 @@
             title: "Producto",
             text: "¿Está seguro de eliminar?",
             icon: "question",
-            background: "#2c3e50",         // Fondo oscuro
-            color: "#ecf0f1",              // Texto claro
+            background: "#2c3e50",
+            color: "#ecf0f1",
             footer: "<span style='color:#bdc3c7'>Product Web</span>",
             confirmButtonText: "Aceptar",
             confirmButtonColor: "#27ae60",

@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 const multer = require('multer')
+const app = express();
 
 // Configuración de almacenamiento
 const storage = multer.diskStorage({
@@ -13,7 +14,7 @@ const storage = multer.diskStorage({
 // Especificando rutas
 const rutaProducto = require('./routes/producto')
 
-const app = express();
+
 const PORT = process.env.PORT || 5000
 
 app.use(bodyParser.urlencoded({ extended: true }))
