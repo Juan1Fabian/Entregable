@@ -28,15 +28,21 @@ CREATE TABLE productos (
     FOREIGN KEY (idcatalogo) REFERENCES catalogos(idcatalogo)
 );
 
-SELECT 
-    p.idproducto,
-    p.producto,
-    p.precio,
-    p.modelo,
-    p.descripcion,
-    p.stock,
-    m.marca,
-    c.catalogo
-FROM productos p
-LEFT JOIN marcas m ON p.idmarca = m.idmarca
-LEFT JOIN catalogos c ON p.idcatalogo = c.idcatalogo;
+INSERT INTO marcas (marca) VALUES 
+('HP'),
+('Lenovo'),
+('Dell'),
+('Asus'),
+('Samsung'),
+('Apple'),
+('Acer'),
+('MSI');
+
+
+
+INSERT INTO catalogos (catalogo) VALUES 
+('Impresoras'),
+('Monitores'),
+('Laptops'),
+('Celulares'),
+('Tablets');
